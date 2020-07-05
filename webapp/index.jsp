@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.net.URLDecoder" %><%--
   Created by IntelliJ IDEA.
   User: zhou
   Date: 2020/7/4
@@ -50,6 +50,30 @@
 
 <h1>首页面</h1>
 <br/>
+
+<b style="color: brown;">${requestScope.token}
+    <%
+        Cookie cookie = null;
+        Cookie[] cookies = null;
+        // 获取cookies的数据,是一个数组
+        cookies = request.getCookies();
+        if( cookies != null ){
+            out.println("<h2> 查找 Cookie 名与值</h2>");
+            for (int i = 0; i < cookies.length; i++){
+                cookie = cookies[i];
+
+                out.print("参数名 : " + cookie.getName());
+                out.print("<br>");
+                out.print("参数值: " + URLDecoder.decode(cookie.getValue(), "utf-8") +" <br>");
+                out.print("------------------------------------<br>");
+            }
+        }else{
+            out.println("<h2>没有发现 Cookie</h2>");
+        }
+    %>
+
+</b>
+
 <br/>
 
 <form action="" name="form">

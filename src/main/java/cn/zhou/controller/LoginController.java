@@ -2,6 +2,7 @@ package cn.zhou.controller;
 
 import cn.zhou.pojo.User;
 import cn.zhou.service.UserService;
+import cn.zhou.utils.JwtUtil;
 import cn.zhou.utils.JwtUtils;
 import cn.zhou.utils.LoginToken;
 import com.alibaba.fastjson.JSONObject;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 
@@ -23,9 +26,12 @@ public class LoginController {
     //登录
 //    @PostMapping("/login")
     //@RequestBody @Valid User user,
+
+    //HttpServletRequest request
+    //  HttpServletResponse response
     @LoginToken
     @RequestMapping("/login")
-    public Object login(HttpServletRequest httpServletRequest) {
+    public Object login(HttpServletRequest httpServletRequest, HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView();
 
         String username = httpServletRequest.getParameter("username");
@@ -57,15 +63,18 @@ public class LoginController {
 //                modelAndView.addObject("message", jsonObject);
 //                return modelAndView;
             } else {
-                System.out.println("-----////登录//////userForBase/////////////////---login-----userForBase---" + userForBase);
 
                 ///登录成功
 //                String token = JwtUtils.createJWT(6000000, userForBase);
 //                jsonObject.put("token", token);
 //                jsonObject.put("user", userForBase);
 //                System.out.println("-----/////////////token//////////////---login-----user---"+token);
-
 //                return jsonObject;
+
+                //把 token 使用Cookie技术发送到客户端
+                String token = JwtUtil.createToken(userForBase.getId().toString());
+                Cookie cookie = new Cookie("token", token);
+                response.addCookie(cookie);
                 return "<meta http-equiv='refresh' content=0;URL='/index.jsp'>";
 
 //                modelAndView.setViewName("login.jsp");

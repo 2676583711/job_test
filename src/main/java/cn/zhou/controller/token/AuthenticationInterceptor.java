@@ -4,6 +4,7 @@ package cn.zhou.controller.token;
 import cn.zhou.pojo.User;
 import cn.zhou.service.UserService;
 import cn.zhou.utils.CheckToken;
+import cn.zhou.utils.JwtUtil;
 import cn.zhou.utils.JwtUtils;
 import cn.zhou.utils.LoginToken;
 import com.auth0.jwt.JWT;
@@ -27,7 +28,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     UserService userService;
 
     @Override
-    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
+    public boolean preHandle(HttpServletRequest httpServletRequest,
+                             HttpServletResponse httpServletResponse, Object object) throws Exception {
 
         // 从 http 请求头中取出 token
         String token = httpServletRequest.getHeader("token");
@@ -46,6 +48,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             }
         }
 
+        //@CheckToken 表示需要验证token 是否登录
         //检查有没有需要用户权限的注解
         if (method.isAnnotationPresent(CheckToken.class)) {
             CheckToken checkToken = method.getAnnotation(CheckToken.class);
@@ -57,7 +60,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 // 获取 token 中的 user id
                 String userId;
                 try {
-                    userId = JWT.decode(token).getClaim("id").asString();
+//                    userId = JWT.decode(token).getClaim("id").asString();
+                    userId = JwtUtil.decodedJWT(token).getClaim("id").asString();
+
                 } catch (JWTDecodeException j) {
                     throw new RuntimeException("访问异常！");
                 }
@@ -65,7 +70,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 if (user == null) {
                     throw new RuntimeException("用户不存在，请重新登录");
                 }
-                Boolean verify = JwtUtils.isVerify(token, user);
+//                Boolean verify = JwtUtils.isVerify(token, user);
+                Boolean verify = JwtUtil.verifyToken(token);
                 if (!verify) {
                     throw new RuntimeException("非法访问！");
                 }
