@@ -20,5 +20,6 @@ public interface UserDao {
     //查
     public User queryById(Integer id);
 
+    public User queryByUsername(String username);
 
 }

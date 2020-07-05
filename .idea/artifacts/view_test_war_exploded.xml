@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="view_test:war exploded">
-    <output-path>$PROJECT_DIR$/target/ssm</output-path>
+    <output-path>$PROJECT_DIR$/../workspace/program/Java/Tomcat/apache-tomcat-9.0.14/webapps</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
@@ -22,9 +22,7 @@
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.2.2" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.2.2" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.8.7" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.0" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.7" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.5" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.41" />
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
@@ -42,6 +40,14 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:4.3.5.RELEASE" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
+          <element id="library" level="project" name="Maven: com.auth0:java-jwt:3.4.0" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.11" />
+          <element id="library" level="project" name="Maven: io.jsonwebtoken:jjwt:0.9.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.9" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.8" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.8" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.9" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.61" />
         </element>
       </element>
       <element id="directory" name="META-INF">

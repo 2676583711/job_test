@@ -21,7 +21,7 @@
 
     <!-- 配置DispatcherServlet -->
     <servlet>
-        <servlet-name>SpringMVC</servlet-name>
+        <servlet-name>ssm</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <!-- 配置springMVC需要加载的配置文件-->
         <init-param>
@@ -33,8 +33,9 @@
         <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
-        <servlet-name>SpringMVC</servlet-name>
+        <servlet-name>ssm</servlet-name>
         <!-- 匹配所有请求，此处也可以配置成 *.do 形式 -->
+        <!--  / 拦截除了 .jsp 文件以外的所有文件-->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
