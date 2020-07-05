@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.zhou.dao.UserDao">
+
+    <!-- resultMap 把表字段与pojo对象绑定，方便查询-->
+    <!--   column="表的主键字段，或者可以为查询语句中的别名字段" jdbcType="字段类型" property="映射pojo对象的主键属性" -->
+    <resultMap id="user" type="cn.zhou.pojo.User">
+        <id column="id" jdbcType="Integer" property="id"/>
+        <result column="username" jdbcType="String" property="username"/>
+        <result column="password" jdbcType="String" property="password"/>
+        <result column="email" jdbcType="String" property="email"/>
+        <result column="sex" jdbcType="String" property="sex"/>
+    </resultMap>
+
+    <insert id="add" useGeneratedKeys="true" parameterType="cn.zhou.pojo.User">
+        insert into test_user(id,username,password,email,sex)
+        values(#{id},#{username},#{password},#{email},#{sex})
+    </insert>
+
+    <delete id="delete" parameterType="Integer">
+        delete from test_user where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="cn.zhou.pojo.User">
+         update test_user
+         <set>
+         <if test="username != null">
+             username = #{username},
+         </if>
+        <if test="password != null">
+            password = #{password},
+        </if>
+        <if test="email != null">
+            email = #{email},
+        </if>
+        <if test="sex != null">
+            sex= #{sex}
+        </if>
+         </set>
+         where id = #{id}
+    </update>
+
+    <!--
+      <select id="select" resultType="com.evecom.common.Student">
+         select * from test_user
+       </select>
+    -->
+
+<!--
+   <select id="selectStuSlur" resultType="com.evecom.common.Student">
+        select * from test_user where name like '%' #{name} '%'
+    </select>
+    -->
+
+
+    <select id="queryById" parameterType="Integer" resultType="cn.zhou.pojo.User">
+         select * from test_user where id = #{id}
+     </select>
+
+
+
+</mapper>
