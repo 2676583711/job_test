@@ -10,41 +10,13 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-
-    <!-- 扫描web相关的bean 比如 controller-->
-    <context:component-scan base-package="cn.zhou"/>
+    <!--开启注解扫描，只扫描Controller注解-->
+    <context:component-scan base-package="cn.zhou.controller">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
     <!-- 开启SpringMVC注解模式 -->
     <mvc:annotation-driven/>
-
-    <!-- 设置返回字符串编码 -->
-    <!--
-      <mvc:message-converters>
-        <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
-            <property name = "supportedMediaTypes">
-                <list>
-                    <value>text/html;charset=UTF-8</value>
-                    <value>application/json;charset=UTF-8</value>
-                </list>
-            </property>
-        </bean>
-        -->
-
-
-                <!-- json转换器 -->
-<!--
-    <bean id="mappingJackson2HttpMessageConverter"
-          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-        <property name="supportedMediaTypes">
-            <list>
-                <value>text/html;charset=UTF-8</value>
-                <value>application/json;charset=UTF-8</value>
-            </list>
-        </property>
-    </bean>
-</mvc:message-converters>
-        -->
-
 
     <!-- 静态资源默认servlet配置 -->
     <mvc:default-servlet-handler/>

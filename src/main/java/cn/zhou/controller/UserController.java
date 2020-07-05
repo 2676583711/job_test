@@ -136,7 +136,7 @@ public class UserController {
 
 
 create table test_user(id int auto_increment primary key,
-username varchar(100),
+username varchar(100) unique key,
 password varchar(100),
 email varchar(200),
 sex char(10));
