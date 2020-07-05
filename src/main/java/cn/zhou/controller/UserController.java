@@ -109,17 +109,17 @@ public class UserController {
     //查询
     @CheckToken
     @RequestMapping(value = "/query")
-    public ModelAndView query(Integer id) {
+    public ModelAndView query(String username) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index.jsp");
 
-        if (id == null || id.equals("")) {
-            modelAndView.addObject("message", "id不能为空");
+        if (username == null || username.equals("")) {
+            modelAndView.addObject("message", "username不能为空");
             return modelAndView;
         }
         try {
             modelAndView.addObject("message", "查询成功");
-            modelAndView.addObject("user", userService.queryById(id));
+            modelAndView.addObject("user", userService.queryByUsername(username));
             return modelAndView;
         } catch (Exception e) {
             System.out.println(e.getMessage());
